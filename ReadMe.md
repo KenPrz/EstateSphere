@@ -1,7 +1,28 @@
-# Documentation
+# EstateSphere
 
 This documentation explains the purpose and usage of the PHP code provided. The code is composed of four files, namely `login.php`, `signup.php`, `connection.php`, `logout.php`, and `functions.php`.
 
+# Installation
+## To use this PHP code with XAMPP, you can follow the steps below:
+
+1. Download and install XAMPP from the official website [apachefriends.org](https://www.apachefriends.org/index.html).
+
+2. Open the XAMPP control panel and start the Apache and MySQL modules.
+
+3. Place all the PHP files (Login.php, Signup.php, Connection.php, Logout.php, and Functions.php) in the htdocs folder of XAMPP. This folder is typically located in C:\xampp\htdocs.
+
+4. Import the database file (not provided in the code above) into phpMyAdmin by opening a web browser and navigating to http://localhost/phpmyadmin. Create a new database called "estatesphere" and import the SQL file into the database.
+
+5. Once the database has been imported, you can access the login and signup pages by opening a web browser and navigating to http://localhost/Login.php and http://localhost/Signup.php, respectively.
+
+6. To test the functionality of the code, you can create a new user account by filling up the signup form. Once you have created a new user account, you can log in to the system using the login form.
+
+7. To log out of the system, you can click on the "Logout" button, which will redirect you to the Logout.php file and destroy the session.
+
+### Note: Remember to always start the Apache and MySQL modules before testing the code.
+
+
+# Documentation
 ## `login.php`
 `login.php` is a PHP script that handles user authentication. It checks if the submitted email and password match an entry in the `users` table in the database. If the email and password match, the script sets the `user_id` session variable and redirects the user to the index page. If the email and password do not match, the script outputs an error message.
 
