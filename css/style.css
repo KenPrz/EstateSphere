@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url(../assets/img/background-index.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-left: 3rem;
+    padding-right: 12rem;
+    padding-top: 5rem;
+    display: flex;
+}
+
+.welcome-text {
+    flex: 1;
+    text-align: left;
+    margin-right: 50px;
+}
+
+.login-form {
+    flex: 1;
+}
+
+.welcome-text {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.header {
+    font-size: 2.5rem;
+}
+
+.sub-header {
+    font-size: 2rem;
+}
+
+/* Style the login form container */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 70px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+/* Style the form headings */
+.login-form h1 {
+    text-align: left;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+/* Style the form inputs */
+input[type="text"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: solid;
+    border-width: 1px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Style the form labels */
+.login-form label {
+    display: none;
+}
+
+.login-form input[type="text"]+label,
+.login-form input[type="password"]+label {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #a9a9a9;
+}
+
+/* Style the form buttons */
+button[type="submit"],
+button[type="button"] {
+    display: block;
+    margin: 0 auto;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#login-button {
+    background-color: #18A0FB;
+    transition: 500ms;
+}
+
+#login-button:hover {
+    background-color: #0d82cf;
+}
+
+#create-account-button {
+    background-color: #696969;
+    transition: 500ms;
+}
+
+#create-account-button:hover {
+    background-color: #3f3f3f;
+}
+
+.forgot-pass {
+    padding: 10px 30px 10px 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+
+    border-bottom: solid black;
+    border-width: 1px;
+
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.login-form a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #707070;
+    text-decoration: none;
+    transition: 500ms;
+}
+
+.login-form a:hover {
+    color: black;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    width: 400px;
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#close-button:hover {
+    color: rgb(245, 91, 91);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.form-row input:last-child {
+    margin-right: 0;
+}
+
+.popup h2 {
+    text-align: center;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: solid;
+    border-width: 1px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.form-row p {
+    font-size: 8px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* FIX FOR RADIO BEHAVIOR */
+#buyer-button,
+#seller-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: solid;
+    border-width: 1px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    background-color: #dcdcdc;
+    color: black;
+    border-color: #dcdcdc;
+    transition: .2s;
+}
+
+#buyer-button:hover,
+#seller-button:hover {
+    background-color: #b7b4b4;
+    color: black;
+    border-color: #dcdcdc;
+    transition: .2s;
+}
+
+#signup-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: solid;
+    border-width: 1px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    background-color: #359ee4;
+    color: black;
+    border-color: #dcdcdc;
+    transition: .2s;
+}
+
+#signup-button:hover {
+    background-color: #0092f4;
+    color: black;
+    border-color: #dcdcdc;
+    transition: .2s;
+}
