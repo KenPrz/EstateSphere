@@ -79,15 +79,13 @@ button[type="submit"]:hover {
 background-color: #1482cb;
 }
 .swiper-slide {
-    text-align: center;
+    text-align:left;
     font-size: 18px;
     background: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 20px;
     border-radius: 10px;
     margin-right: 20px;
     border:solid 3px #e7e6e6;
-    box-sizing: border-box;
+    font-weight: 600;
 }
