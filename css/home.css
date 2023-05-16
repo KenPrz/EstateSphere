@@ -9,7 +9,7 @@ body {
 
 /* Landing Page Header */
 .header{
-    height: 40vh;
+    height: 35vh;
     width: 100%;
     padding-top: 8vh;
     background-image: url("../assets/img/background-index.jpg");
