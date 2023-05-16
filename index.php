@@ -94,8 +94,35 @@ $user_data = check_login($con);
             </div>
         </div>
     </div>
-    <main>
-
+    <main class="m3">
+        <div class="row mx-5 my-2">
+            <div class="row">
+                <div class="title-header">
+                    <h3>Buy Properties Listed in <b>Albay</b></h3>
+                </div>
+            </div>
+            <div class="row">
+                <!-- CAROUSEL HERE -->
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h4 class="float-left">Featured Properties For Sale</h4>
+                </div>
+                <div class="col-6">
+                    <a href="#" class="float-sm-left">See more ></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h4 class="float-left">Featured Properties For Rent</h4>
+                </div>
+                <div class="col-6">
+                    <div class="float-right">
+                        <a href="#">See more ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 
