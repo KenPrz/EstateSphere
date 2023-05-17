@@ -5,14 +5,15 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #e7e6e6;
 }
 
 /* Landing Page Header */
 .header{
-    height: 40vh;
+    height: 35vh;
     width: 100%;
     padding-top: 8vh;
-    background-image: url("../assets/img/background-index.jpg");
+    background-image: url("../assets/img/main-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 25% 75%;
@@ -76,4 +77,15 @@ transition: 0.5s ease;
 
 button[type="submit"]:hover {
 background-color: #1482cb;
+}
+.swiper-slide {
+    text-align:left;
+    font-size: 18px;
+    background: white;
+    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    border:solid 3px #e7e6e6;
+    font-weight: 600;
 }
