@@ -1,0 +1,40 @@
+.bod{
+	margin: 0px;
+	padding: 0px;
+}
+.h{
+	margin-top: 4%;
+	background-image: url("../assets/img/prop-img/img-1.jpg");
+	background-size: cover	;
+	padding: 0px;
+	margin-left: 0px;
+	display: flex;
+	justify-content: !important;
+}
+.marg {
+  margin-left: 20%;
+  
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+}
+.k{
+	background-color:	whitesmoke;;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 10px;
+	margin-top: 0px;
+}
+.line {
+  border-bottom: 1px solid #000;
+}
+.admin_caro{
+  margin-left: 22%;
+  
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.admn{
+	margin-right: 20px;
+	
+}

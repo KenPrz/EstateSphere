@@ -86,6 +86,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="bg-light">
 	<div class="nav">
 		<nav>
+<<<<<<< HEAD
+        <div class="logo">
+            <a href="#">
+                <img src="./assets/img/logo.svg" alt="Logo">
+                <a href="#">Estatesphere</a>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Properties</a></li>
+            <li><a href="#">Buyer/seller</a></li>
+            
+            <li><a href="aboutestate.php">About us</a></li>
+        </ul>
+        <div class="login">
+            <a href="logout.php">
+                <button type="button">Logout</button>
+            </a>
+        </div>
+    </nav>
+=======
 			<div class="logo">
 				<a href="#">
 					<img src="./assets/img/logo.svg" alt="Logo">
@@ -105,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</a>
 			</div>
 		</nav>
+>>>>>>> 47d2d3929fe2bfa51e5cf5bf07da7a018b63525d
 	</div>
 	<div class="container marg mb-4">
 		<div class="button">
