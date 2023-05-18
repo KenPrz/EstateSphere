@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="bg-light">
 	<div class="nav">
 		<nav>
-<<<<<<< HEAD
+
         <div class="logo">
             <a href="#">
                 <img src="./assets/img/logo.svg" alt="Logo">
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
         </div>
     </nav>
-=======
+
 			<div class="logo">
 				<a href="#">
 					<img src="./assets/img/logo.svg" alt="Logo">
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</a>
 			</div>
 		</nav>
->>>>>>> 47d2d3929fe2bfa51e5cf5bf07da7a018b63525d
+
 	</div>
 	<div class="container marg mb-4">
 		<div class="button">
@@ -163,14 +163,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				<div class="row ms-5">
 					<div class="col-md-3">
-						<label for="name"></label>
-						<input type="text" class="form-control border" placeholder="Property Status"
-							aria-label="Last name" name="propStat">
+						<select class="form-select mt-4" aria-label="Default select example" name="propStat">
+						  <option selected>Property Status</option>
+						  <option value="Available">Available</option>
+						  <option value="Sold">Sold</option>
+						</select>
 					</div>
 					<div class="col-md-3	">
-						<label for="name"></label>
-						<input type="text" class="form-control border" placeholder="Property Type"
-							aria-label="Last name" name="propType">
+						<select class="form-select mt-4" aria-label="Default select example" name="propType">
+						  <option selected>Property Type</option>
+						  <option value="Apartment/Condominium">Apartment/Condominium</option>
+						  <option value="2">Single-Family House</option>
+						  <option value="3">Commercial Property</option>
+						  <option value="4">Luxury Properties</option>
+						</select>
 					</div>
 					<div class="col-md-5	">
 						<label for="name">Selling Price</label>
@@ -182,8 +188,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="row ms-5 mt-5">
 					<div class="col-md-3">
 						<label for="name">Municipality</label>
-						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="locmun">
+						<select name="locmun" class="form-select"  aria-label="Default select example">
+            <option value="Any property type">Select Muninicipality</option>
+                                    <option value="Bacacay">Bacacay</option>
+                                    <option value="Camalig">Camalig</option>
+                                    <option value="Daraga">Daraga</option>
+                                    <option value="Guinobatan">Guinobatan</option>
+                                    <option value="Jovellar">Jovellar</option>
+                                    <option value="Legazpi">Legazpi</option>
+                                    <option value="Libon">Libon</option>
+                                    <option value="Ligao">Ligao</option>
+                                    <option value="Malilipot">Malilipot</option>
+                                    <option value="Malinao">Malinao</option>
+                                    <option value="Manito">Manito</option>
+                                    <option value="Oas">Oas</option>
+                                    <option value="Pio Duran">Pio Duran</option>
+                                    <option value="Polangui">Polangui</option>
+                                    <option value="Santo Domingo">Santo Domingo</option>
+                                    <option value="Tabaco">Tabaco</option>
+                                    <option value="Tiwi">Tiwi</option>       
+            </select>
 					</div>
 					<div class="col-md-3">
 						<label for="name">Barangay</label>
