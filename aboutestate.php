@@ -176,7 +176,7 @@
 	<div class="line m-5 linya"></div>
 	<footer class="mt-1">
 	  <div class="text-center py-2">
-	    <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+	    <p>&copy; EstateSphere 2023. We love our users!</p>
 	  </div>
 	</footer>
 
