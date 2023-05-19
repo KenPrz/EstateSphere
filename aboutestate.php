@@ -95,7 +95,7 @@
 					<?php foreach ($persons as $person) {?>
 					<div class="col-md-2 border border-2 border-light  shadow rounded p-3 text-center admn">
 						<img src="<?php echo htmlspecialchars($person['admnimg']); ?>" class="mt-3 avt" >
-						<div class="fw-bold"><p class="fs-20"><?php echo htmlspecialchars($person['admnName']); ?></p></div>
+						<div class="fw-bold"><p class="fs-20 mt-2"><?php echo htmlspecialchars($person['admnName']); ?></p></div>
 						<div class=""><p class="fs-20"><?php echo htmlspecialchars($person['admnRole']); ?></p></div>
 					</div>
 					<?php } ?>
