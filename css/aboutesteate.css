@@ -5,7 +5,7 @@
 .h{
 	margin-top: 4%;
 	background-image: url("../assets/img/prop-img/img-1.jpg");
-	background-size: cover	;
+	background-size: cover;
 	padding: 0px;
 	margin-left: 0px;
 	display: flex;
@@ -28,7 +28,7 @@
 .line {
   border-bottom: 1px solid #000;
 }
-.admin_caro{
+.admin_car{
   margin-left: 22%;
   
   padding-top: 5%;
@@ -37,4 +37,32 @@
 .admn{
 	margin-right: 20px;
 	
+}
+.avt{
+	width: 100%;
+	aspect-ratio: 4/3;
+	object-fit: contain;
+}
+.f{
+	margin-top: 2px;
+	background-image: url("../assets/img/prop-img/img-3.jpg");
+	background-size: cover	;
+	padding: 0px;
+	margin-right: 0px;
+	display: flex;
+	justify-content: !important;
+}
+.frm{
+	margin-top: 5%;
+	margin-left: 10%;
+	padding: 5px;
+}
+.fnan{
+	aspect-ratio: 4/3;
+	object-fit: contain;
+	mix-blend-mode: color-burn;
+}
+.linya{
+	border: 1px solid lightslategray;
+	opacity: 50%;
 }

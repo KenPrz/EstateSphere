@@ -53,13 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			move_uploaded_file($fileTmpName, $fileLocation);
 			$sql = "insert into propertylisting_tbl(propOwnerLname, propOwnerFname, propOwnerCont, propOwnerEmail, propStatus, propType, propSellPrice, propMun, propBar, propZonPur, propMap, propLotArea, propFlrArea, noBed, propNoBat, propCarport, propOth, propFeatr, propIMGaddrs)values('$propownlname', '$propownfname', '$propowncont', '$propownemail', '$propStat', '$propType', '$propPrice', '$locmun', '$locbar', '$loczon', '$locwagmaps', '$proplot', '$propflor', '$propbed', '$proptoi', '$propcar', '$propother', '$propfet', '$fileLocation')";
 			if (mysqli_query($con, $sql)) {
-				$_SESSION['message'] = 'Article added';
+				$_SESSION['message'] = 'Successfully Added';
 
 			} else {
-				$_SESSION['message'] = 'cannot add article';
+				$_SESSION['message'] = 'cannot add property';
 			}
 		} else {
-			$_SESSION['message'] = 'file not upload';
+			$_SESSION['message'] = 'cannot add property';
 		}
 	} else {
 

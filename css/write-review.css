@@ -1,0 +1,67 @@
+.review{
+	margin-top: 8%;
+}
+.propimg{
+	width: 90%;
+	margin-left: 12px;
+}
+.d{
+	margin-left: 12px;
+}
+.col2{
+
+}
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.custom-checkbox .custom-control-label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .custom-control-label::after {
+  display: block;
+}
+
+/* Hide the checkbox input */
+.custom-checkbox input {
+  display: none;
+}
+
+.selected {
+  background-color: blue;
+  color: white;
+}
