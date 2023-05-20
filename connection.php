@@ -1,7 +1,7 @@
 <?php
 $dbhost = 'localhost';
 $dbuser = 'root';
-$dbpassword = 'traxex123lord';
+$dbpassword = '';
 $dbname = 'estatesphere';
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname))
