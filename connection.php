@@ -2,7 +2,7 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpassword = '';
-$dbname = 'estatesphere';
+$dbname = 'estatesphere_new';
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname))
 {

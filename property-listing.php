@@ -1,71 +1,104 @@
 <?php
 session_start();
-//$conn = new mysqli('localhost','root','root','estatesphere');
 include("connection.php");
 include("functions.php");
-// $user_data = check_login($con);
+$user_data = check_login($con);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	// Property owner information
+	$property_seller = $user_data["user_id"];
+	$property_owner_lname = $_POST['property_owner_lname'];
+	$property_owner_fname = $_POST['property_owner_fname'];
+	$property_owner_contact = $_POST['property_owner_contact'];
+	$property_owner_email = $_POST['property_owner_email'];
 
-	//property owner information
-	$propownlname = $_POST['propownlname'];
-	$propownfname = $_POST['propownfname'];
-	$propowncont = $_POST['propowncont'];
-	$propownemail = $_POST['propownemail'];
+	// Property listing information
+	$prop_status = "for sale";
+	$property_name = $_POST['property_name'];
+	$property_type = $_POST['property_type'];
+	$property_price = $_POST['property_price'];
+	$property_municipality = $_POST['property_municipality'];
+	$property_baranggay = $_POST['property_baranggay'];
+	$property_zone_purok = $_POST['property_zone_purok'];
+	$property_map = $_POST['property_map'];
+	$property_lot_area = $_POST['property_lot_area'];
+	$property_flr_area = $_POST['property_flr_area'];
+	$num_of_beds = $_POST['num_of_beds'];
+	$num_of_baths = $_POST['num_of_baths'];
+	$num_of_carports = $_POST['num_of_carports'];
+	$propOthers = $_POST['propOthers'];
+	$propFeatures = $_POST['propFeatures'];
 
-	//property listing information
-	$propStat = $_POST['propStat'];
-	$propType = $_POST['propType'];
-	$propPrice = $_POST['propPrice'];
-	$locmun = $_POST['locmun'];
-	$locbar = $_POST['locbar'];
-	$loczon = $_POST['loczon'];
-	$locwagmaps = $_POST['locwagmaps'];
-	$proplot = $_POST['proplot'];
-	$propflor = $_POST['propflor'];
-	$propbed = $_POST['propbed'];
-	$proptoi = $_POST['proptoi'];
-	$propcar = $_POST['propcar'];
-	$propother = $_POST['propother'];
-	$propfet = $_POST['propfet'];
-
-	//img section, dont alter
-	$img = $_FILES['propimg']['name'];
-
-
-	$fileTmpName = $_FILES['propimg']['tmp_name'];
+	// Image section, don't alter
+	$img = $_FILES['property_imgaddrs']['name'];
+	$fileTmpName = $_FILES['property_imgaddrs']['tmp_name'];
 	$allowedType = array('jpg', 'png', 'jpeg', 'gif', 'ico');
 	$fileExtension = explode('.', $img);
-
-	//set all the letters to lower case
 	$fileRealExtension = strtolower(end($fileExtension));
 
-	if (preg_match("!image!", $_FILES['propimg']['type'])) {
+	if (preg_match("!image!", $_FILES['property_imgaddrs']['type'])) {
 		if (in_array($fileRealExtension, $allowedType)) {
-			$_SESSION['propimg'] = $img;
+			$_SESSION['property_imgaddrs'] = $img;
 			$fileExtension = explode('.', $img);
-			//set all the letters to lower case
-
 			$NewNameFile = uniqid('', true) . "." . $fileRealExtension;
-
 			$fileLocation = 'assets/img/properties/' . $NewNameFile;
-			// move the file to the new location from temp location 
 			move_uploaded_file($fileTmpName, $fileLocation);
-			$sql = "insert into propertylisting_tbl(propOwnerLname, propOwnerFname, propOwnerCont, propOwnerEmail, propStatus, propType, propSellPrice, propMun, propBar, propZonPur, propMap, propLotArea, propFlrArea, noBed, propNoBat, propCarport, propOth, propFeatr, propIMGaddrs)values('$propownlname', '$propownfname', '$propowncont', '$propownemail', '$propStat', '$propType', '$propPrice', '$locmun', '$locbar', '$loczon', '$locwagmaps', '$proplot', '$propflor', '$propbed', '$proptoi', '$propcar', '$propother', '$propfet', '$fileLocation')";
+			$sql = "INSERT INTO property (
+				property_seller,
+				property_owner_lname,
+				property_owner_fname,
+				property_owner_cont,
+				property_owner_email,
+				property_status,
+				property_name,
+				property_type,
+				property_price,
+				property_municipality,
+				property_baranggay,
+				property_zone_purok,
+				property_map,
+				property_lot_area,
+				property_flr_area,
+				num_of_beds,
+				num_of_baths,
+				num_of_carports,
+				prop_others,
+				prop_features,
+				property_img_addrs
+			) VALUES (
+				'{$user_data["user_id"]}',
+				'$property_owner_lname',
+				'$property_owner_fname',
+				'$property_owner_contact',
+				'$property_owner_email',
+				'$prop_status',
+				'$property_name',
+				'$property_type',
+				'$property_price',
+				'$property_municipality',
+				'$property_baranggay',
+				'$property_zone_purok',
+				'$property_map',
+				'$property_lot_area',
+				'$property_flr_area',
+				'$num_of_beds',
+				'$num_of_baths',
+				'$num_of_carports',
+				'$propOthers',
+				'$propFeatures',
+				'$fileLocation'
+			)";
 			if (mysqli_query($con, $sql)) {
 				$_SESSION['message'] = 'Successfully Added';
-
 			} else {
-				$_SESSION['message'] = 'cannot add property';
+				$_SESSION['message'] = 'Cannot add property';
 			}
 		} else {
-			$_SESSION['message'] = 'cannot add property';
+			$_SESSION['message'] = 'Cannot add property';
 		}
 	} else {
-
-		$_SESSION['message'] = 'Allowed format(JPG, JPEG, PNG, GIF,';
+		$_SESSION['message'] = 'Allowed format(JPG, JPEG, PNG, GIF)';
 	}
-
 }
 ?>
 
@@ -84,47 +117,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body class="bg-light">
+
 	<div class="nav">
 		<nav>
-
-        <div class="logo">
-            <a href="#">
-                <img src="./assets/img/logo.svg" alt="Logo">
-                <a href="#">Estatesphere</a>
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Properties</a></li>
-            <li><a href="#">Buyer/seller</a></li>
-            
-            <li><a href="aboutestate.php">About us</a></li>
-        </ul>
-        <div class="login">
-            <a href="logout.php">
-                <button type="button">Logout</button>
-            </a>
-        </div>
-    </nav>
 
 			<div class="logo">
 				<a href="#">
 					<img src="./assets/img/logo.svg" alt="Logo">
-					<a href="index.php">Estatesphere</a>
+					<a href="#">Estatesphere</a>
 				</a>
 			</div>
 			<ul class="nav-links">
-				<li><a href="index.php">Home</a></li>
+				<li><a href="#">Home</a></li>
 				<li><a href="#">Properties</a></li>
 				<li><a href="#">Buyer/seller</a></li>
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">About us</a></li>
+
+				<li><a href="aboutestate.php">About us</a></li>
 			</ul>
 			<div class="login">
 				<a href="logout.php">
 					<button type="button">Logout</button>
 				</a>
 			</div>
+		</nav>
+		<div class="logo">
+			<a href="#">
+				<img src="./assets/img/logo.svg" alt="Logo">
+				<a href="index.php">Estatesphere</a>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="index.php">Home</a></li>
+			<li><a href="#">Properties</a></li>
+			<li><a href="#">Buyer/seller</a></li>
+			<li><a href="#">Contact</a></li>
+			<li><a href="#">About us</a></li>
+		</ul>
+		<div class="login">
+			<a href="logout.php">
+				<button type="button">Logout</button>
+			</a>
+		</div>
 		</nav>
 
 	</div>
@@ -156,73 +189,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</div>
 			</div>
 		</div>
-		<form method="POST" action="<?php echo (htmlspecialchars($_SERVER['PHP_SELF'])); ?>"
-			enctype="multipart/form-data" class="mt-5">
+		<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data"
+			class="mt-5">
 			<div class="mt-3 frm shadow p-4"><br>
 				<div class="h6 ms-5 mt-2 fw-bold">Property Information</div>
 
 				<div class="row ms-5">
 					<div class="col-md-3">
-						<select class="form-select mt-4" aria-label="Default select example" name="propStat">
-						  <option selected>Property Status</option>
-						  <option value="Available">Available</option>
-						  <option value="Sold">Sold</option>
+						<label for="name">Property Name</label>
+						<input type="text" class="form-control border" placeholder="Name" name="property_name">
+					</div>
+					<div class="col-md-3">
+						<select class="form-select mt-4" aria-label="Default select example" name="property_type">
+							<option selected>Property Type</option>
+							<option value="Apartment/Condominium">Apartment/Condominium</option>
+							<option value="Single-Family House">Single-Family House</option>
+							<option value="Commercial Property">Commercial Property</option>
+							<option value="Luxury Properties">Luxury Properties</option>
 						</select>
 					</div>
-					<div class="col-md-3	">
-						<select class="form-select mt-4" aria-label="Default select example" name="propType">
-						  <option selected>Property Type</option>
-						  <option value="Apartment/Condominium">Apartment/Condominium</option>
-						  <option value="2">Single-Family House</option>
-						  <option value="3">Commercial Property</option>
-						  <option value="4">Luxury Properties</option>
-						</select>
-					</div>
-					<div class="col-md-5	">
+					<div class="col-md-5">
 						<label for="name">Selling Price</label>
-						<input type="text" class="form-control border" placeholder="$0000" aria-label="Last name"
-							name="propPrice">
+						<input type="text" class="form-control border" placeholder="Price" name="property_price">
 					</div>
 				</div>
 
 				<div class="row ms-5 mt-5">
 					<div class="col-md-3">
 						<label for="name">Municipality</label>
-						<select name="locmun" class="form-select"  aria-label="Default select example">
-            <option value="Any property type">Select Muninicipality</option>
-                                    <option value="Bacacay">Bacacay</option>
-                                    <option value="Camalig">Camalig</option>
-                                    <option value="Daraga">Daraga</option>
-                                    <option value="Guinobatan">Guinobatan</option>
-                                    <option value="Jovellar">Jovellar</option>
-                                    <option value="Legazpi">Legazpi</option>
-                                    <option value="Libon">Libon</option>
-                                    <option value="Ligao">Ligao</option>
-                                    <option value="Malilipot">Malilipot</option>
-                                    <option value="Malinao">Malinao</option>
-                                    <option value="Manito">Manito</option>
-                                    <option value="Oas">Oas</option>
-                                    <option value="Pio Duran">Pio Duran</option>
-                                    <option value="Polangui">Polangui</option>
-                                    <option value="Santo Domingo">Santo Domingo</option>
-                                    <option value="Tabaco">Tabaco</option>
-                                    <option value="Tiwi">Tiwi</option>       
-            </select>
+						<select name="property_municipality" class="form-select" aria-label="Default select example">
+							<option value="Any property type">Select Municipality</option>
+							<option value="Bacacay">Bacacay</option>
+							<option value="Camalig">Camalig</option>
+							<option value="Daraga">Daraga</option>
+							<option value="Guinobatan">Guinobatan</option>
+							<option value="Jovellar">Jovellar</option>
+							<option value="Legazpi">Legazpi</option>
+							<option value="Libon">Libon</option>
+							<option value="Ligao">Ligao</option>
+							<option value="Malilipot">Malilipot</option>
+							<option value="Malinao">Malinao</option>
+							<option value="Manito">Manito</option>
+							<option value="Oas">Oas</option>
+							<option value="Pio Duran">Pio Duran</option>
+							<option value="Polangui">Polangui</option>
+							<option value="Santo Domingo">Santo Domingo</option>
+							<option value="Tabaco">Tabaco</option>
+							<option value="Tiwi">Tiwi</option>
+						</select>
 					</div>
 					<div class="col-md-3">
 						<label for="name">Barangay</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="locbar">
+							name="property_baranggay">
 					</div>
 					<div class="col-md-2">
 						<label for="name">Zone/Purok</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="loczon">
+							name="property_zone_purok">
 					</div>
 					<div class="col-md-3">
 						<label for="name">Waze/GMaps link</label>
 						<input type="text" class="form-control border" placeholder="$0000" aria-label="Last name"
-							name="locwagmaps">
+							name="property_map">
 					</div>
 				</div>
 
@@ -230,27 +259,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="col-md-3">
 						<label for="name">Lot Area</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="proplot">
+							name="property_lot_area">
 					</div>
 					<div class="col-md-2">
 						<label for="name">Floor Area</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propflor">
+							name="property_flr_area">
 					</div>
 					<div class="col-md-2">
 						<label for="name">Bedroom(s)</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propbed">
+							name="num_of_beds">
 					</div>
 					<div class="col-md-2">
 						<label for="name">Toilet/Bath(s)</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="proptoi">
+							name="num_of_baths">
 					</div>
 					<div class="col-md-2">
 						<label for="name">Car Port(s)</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propcar">
+							name="num_of_carports">
 					</div>
 				</div>
 
@@ -258,20 +287,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="col-md-5">
 						<label for="name">Others</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propother">
+							name="propOthers">
 					</div>
 				</div>
 
 				<div class="row ms-5 mt-5">
-					<div class="col-md-6	">
-						<label for="name">Features </label>
+					<div class="col-md-6">
+						<label for="name">Features</label>
 						<textarea type="text" class="form-control resize-none" rows="4" placeholder=""
-							aria-label="Last name" name="propfet"></textarea>
+							aria-label="Last name" name="propFeatures"></textarea>
 					</div>
 					<div class="col-md-5">
 						<label for="formFile" class="form-label">Upload Pictures</label>
 						<input class="form-control border" type="file" id="formFile" aria-label="Last name"
-							name="propimg">
+							name="property_imgaddrs">
 					</div>
 				</div>
 
@@ -280,24 +309,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="col-md-5">
 						<label for="name">First Name</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propownfname">
+							name="property_owner_fname">
 					</div>
 					<div class="col-md-6">
 						<label for="name">Last Name</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propownlname">
+							name="property_owner_lname">
 					</div>
 				</div>
 				<div class="row ms-5 mt-5">
 					<div class="col-md-5">
 						<label for="name">Contact Number</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propowncont">
+							name="property_owner_contact">
 					</div>
 					<div class="col-md-6">
 						<label for="name">Email Address</label>
 						<input type="text" class="form-control border" placeholder="" aria-label="Last name"
-							name="propownemail">
+							name="property_owner_email">
 					</div>
 				</div>
 
@@ -309,9 +338,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</div>
 			</div>
 		</form>
-
 	</div>
-
 </body>
 
 </html>

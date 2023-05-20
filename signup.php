@@ -8,10 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $lastname = mysqli_real_escape_string($con, $_POST['lastname']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
-    $usertype = mysqli_real_escape_string($con, $_POST['usertype']);
-    if (!empty($email) && !empty($firstname) && !empty($lastname) && !empty($password) && !empty($usertype)){
-        $query = "INSERT INTO users (email, firstname, lastname, password, usertype) 
-        VALUES ('$email', '$firstname', '$lastname', '$password', '$usertype')";
+    if (!empty($email) && !empty($firstname) && !empty($lastname) && !empty($password)){
+        $query = "INSERT INTO users (email, firstname, lastname, password)
+        VALUES ('$email', '$firstname', '$lastname', '$password')";
         mysqli_query($con, $query);
         header("Location: login.php");
         die;
@@ -54,12 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <div class="form-row">
                     <input type="password" id="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-row">
-                    <select name="usertype" id="">
-                        <option value="buyer">Buyer</option>
-                        <option value="seller">Seller</option>
-                    </select>
                 </div>
                 <hr>
                 <div class="form-row">

@@ -186,38 +186,27 @@ $user_data = check_login($con);
                 </div>
                 <!-- Card Rows -->
                 <div class="row d-flex justify-content-center p-4" style="background-color: white;">
-                    <?php
-                    for ($i = 1; $i <= 5; $i++) {
-                        ?>
                         <!-- CARD -->
                         <div class="card mx-2" style="width: 14rem; background-color: #F9F9F9; color: black;">
-                            <img src="./assets/img/prop-img/img-<?= $i ?>.jpg" class="card-img mt-2" alt="image"
+                            <img src="./assets/img/prop-img/img-2.jpg" class="card-img mt-2" alt="image"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                             <div class="card-body px-0">
                                 <h5 class="card-title mb-3">Property Name</h5>
                                 <h6 class="card-subtitle mb-1">Location</h6>
                                 <h6 class="card-subtitle">Price</h6>
                                 <div class="card-text">
-                                    <h4 class="border-bottom">★ ★ ★ ★</h4>
                                     <div class="row">
-                                        <div class="col-4">
-                                            <h5>BED</h5>
-                                        </div>
-                                        <div class="col-4">
-                                            <h5>BED</h5>
-                                        </div>
-                                        <div class="col-4">
-                                            <h5>BED</h5>
-                                        </div>
+                                        <h4 class="border-bottom">
+                                            <?php for ($i = 1; $i <= 2; $i++){ ?> 
+                                                <img src="./assets/img/icons/star.png" style="height: 15px;width:15px;"> 
+                                            <?php } ?>
+                                        </h4>
                                     </div>
                                     <button type="button" class="btn btn-primary btn-sm btn-block w-100">view more</button>
                                 </div>
                             </div>
                         </div>
                         <!-- CARD -->
-                        <?php
-                    }
-                    ?>
                 </div>
                 <!-- Card Rows -->
                 <div class="row my-3">
