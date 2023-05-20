@@ -10,7 +10,7 @@
 		$inqemail = $_POST['inqemail'];
 		$inqcon = $_POST['inqcon'];
 
-		$sql2 = "insert into inquiries_tbl(inqName, contnum, email, consern)values('$inqname', '$inqno', '$inqemail', '$inqcon')";
+		$sql2 = "insert into inquiries_tbl(inquiry_sender, contact_number, email, consern)values('$inqname', '$inqno', '$inqemail', '$inqcon')";
 		if (mysqli_query($con, $sql2)) {
 				$_SESSION['message'] = 'Successfully Added';
 
@@ -19,7 +19,7 @@
 		}
 	}
 
-	$sql = 'select admnName, admnRole, admnRole, admnimg from admin_tbl';
+	$sql = 'select dev_name, dev_role, dev_avatar from developers';
 
 	
 
@@ -94,9 +94,9 @@
 				<div class="row">
 					<?php foreach ($persons as $person) {?>
 					<div class="col-md-2 border border-2 border-light  shadow rounded p-3 text-center admn">
-						<img src="<?php echo htmlspecialchars($person['admnimg']); ?>" class="mt-3 avt" >
-						<div class="fw-bold"><p class="fs-20 mt-2"><?php echo htmlspecialchars($person['admnName']); ?></p></div>
-						<div class=""><p class="fs-20"><?php echo htmlspecialchars($person['admnRole']); ?></p></div>
+						<img src="<?php echo htmlspecialchars($person['dev_avatar']); ?>" class="mt-3 avt" >
+						<div class="fw-bold"><p class="fs-20 mt-2"><?php echo htmlspecialchars($person['dev_name']); ?></p></div>
+						<div class=""><p class="fs-20"><?php echo htmlspecialchars($person['dev_role']); ?></p></div>
 					</div>
 					<?php } ?>
 				</div>
