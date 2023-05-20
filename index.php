@@ -21,17 +21,17 @@ $user_data = check_login($con);
 <body>
     <nav>
         <div class="logo">
-            <a href="#">
+            <a href="index.php">
                 <img src="./assets/img/logo.svg" alt="Logo">
                 <a href="#">Estatesphere</a>
             </a>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="property-listing.php">Properties</a></li>
             <li><a href="#">Buyer/seller</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">About us</a></li>
+            <li><a href="aboutestate.php">About us</a></li>
         </ul>
         <div class="login">
             <a href="logout.php">
@@ -186,27 +186,71 @@ $user_data = check_login($con);
                 </div>
                 <!-- Card Rows -->
                 <div class="row d-flex justify-content-center p-4" style="background-color: white;">
-                        <!-- CARD -->
-                        <div class="card mx-2" style="width: 14rem; background-color: #F9F9F9; color: black;">
-                            <img src="./assets/img/prop-img/img-2.jpg" class="card-img mt-2" alt="image"
-                                style="width: 100%; height: 100%; object-fit: cover;">
-                            <div class="card-body px-0">
-                                <h5 class="card-title mb-3">Property Name</h5>
-                                <h6 class="card-subtitle mb-1">Location</h6>
-                                <h6 class="card-subtitle">Price</h6>
-                                <div class="card-text">
-                                    <div class="row">
-                                        <h4 class="border-bottom">
-                                            <?php for ($i = 1; $i <= 2; $i++){ ?> 
-                                                <img src="./assets/img/icons/star.png" style="height: 15px;width:15px;"> 
-                                            <?php } ?>
-                                        </h4>
+                    <!-- CARD -->
+                    <?php
+                    // Assuming you have established a database connection and stored it in the variable $con
+                    
+                    // Fetch the first 5 rows from the "properties" table
+                    $query = "SELECT * FROM property LIMIT 5";
+                    $result = mysqli_query($con, $query);
+
+                    // Check if the query was successful
+                    if ($result) {
+                        // Iterate over the fetched rows and populate the cards
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $property_name = $row['property_name'];
+                            $location = $row['property_municipality'];
+                            $price = $row['property_price'];
+                            $img = $row['property_img_addrs'];
+
+                            // Generate the HTML card with the fetched data
+                            ?>
+                            <div class="card mx-2" style="width: 14rem; background-color: #F9F9F9; color: black;">
+                                <img src="<?php echo $img; ?>" class="card-img mt-2" alt="image"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="card-body px-0">
+                                    <h5 class="card-title mb-3">
+                                        <?php echo $property_name; ?>
+                                    </h5>
+                                    <h6 class="card-subtitle mb-1">
+                                        <?php echo $location; ?>
+                                    </h6>
+                                    <h6 class="card-subtitle">
+                                        <?php echo $price; ?>
+                                    </h6>
+                                    <div class="card-text">
+                                        <div class="row">
+                                            <h4 class="border-bottom">
+                                                <?php for ($i = 1; $i <= 2; $i++) { ?>
+                                                    <img src="./assets/img/icons/star.png" style="height: 15px;width:15px;">
+                                                <?php } ?>
+                                            </h4>
+                                            <div class="row">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>BED</h5>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>BED</h5>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>BED</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-sm btn-block w-100">view more</button>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-sm btn-block w-100">view more</button>
                                 </div>
                             </div>
-                        </div>
-                        <!-- CARD -->
+                            <?php
+                        }
+                    } else {
+                        // Handle the case when the query fails
+                        echo "Failed to fetch data from the database.";
+                    }
+                    ?>
+                    <!-- CARD -->
                 </div>
                 <!-- Card Rows -->
                 <div class="row my-3">
