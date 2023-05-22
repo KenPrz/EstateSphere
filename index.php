@@ -16,7 +16,6 @@ $user_data = check_login($con);
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </head>
-
 <body>
     <nav>
         <div class="logo">
@@ -27,8 +26,8 @@ $user_data = check_login($con);
         </div>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="property-listing.php">Properties</a></li>
-            <li><a href="#">Buyer/seller</a></li>
+            <li><a href="property-listing.php"><strong>Sell</strong></a></li>
+            <li><a href="listings.php"><strong>Buy</strong></a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="aboutestate.php">About us</a></li>
         </ul>
@@ -61,10 +60,10 @@ $user_data = check_login($con);
                             <div class="dropdown-container">
                                 <select class="btn btn-default dropdown-toggle border" name="property_type">
                                     <option class="dropdown-item" value="Any property type">Property Type</option>
-                                    <option class="dropdown-item" value="Apartment">Apartment</option>
-                                    <option class="dropdown-item" value="House">House</option>
-                                    <option class="dropdown-item" value="Condo">Condo</option>
-                                    <option class="dropdown-item" value="Condo">Lot</option>
+                                    <option class="dropdown-item" value="Apartment">Apartment/Condominium</option>
+                                    <option class="dropdown-item" value="House">Commercial Property</option>
+                                    <option class="dropdown-item" value="Condo">Luxury Properties</option>
+                                    <option class="dropdown-item" value="Condo">Floor Area</option>
                                 </select>
                                 <select name="location" class="btn btn-default dropdown-toggle border">
                                     <option value="Any property type">Location</option>
@@ -92,7 +91,7 @@ $user_data = check_login($con);
                                     <option value="$200,000">200,000</option>
                                     <option value="$300,000">300,000</option>
                                 </select>
-                                <button type="button" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary">Search</button>
                             </div>
                         </div>
                     </div>
@@ -257,7 +256,7 @@ $user_data = check_login($con);
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-sm btn-block w-100">view more</button>
+                                        <a href="property_details.php?id=<?php echo $row['property_id']; ?>" class="btn btn-primary btn-sm btn-block w-100">View More</a>
                                     </div>
                                 </div>
                             </div>
@@ -374,8 +373,7 @@ $user_data = check_login($con);
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary btn-sm btn-block w-100">view
-                                                more</button>
+                                            <a href="property_details.php?id=<?php echo $row['property_id']; ?>" class="btn btn-primary btn-sm btn-block w-100">View More</a>
                                         </div>
                                     </div>
                                 </div>

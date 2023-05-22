@@ -23,6 +23,7 @@ body {
     height: 35vh;
     width: 100%;
     padding-top: 8vh;
+    background-image: url("../assets/img/background-index.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 25% 75%;
