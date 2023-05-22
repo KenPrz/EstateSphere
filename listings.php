@@ -143,8 +143,6 @@ $user_data = check_login($con);
             <!-- <div class="swiper-pagination"></div> -->
         </div>
         <!-- Carousel -->
-    </div>
-    <div class="container" >
         <div class="row my-3">
             <div class="col-6">
                 <h4 class="float-left my-3 ml-0" style="font-weight: 900;">Properties for Sale</h4>

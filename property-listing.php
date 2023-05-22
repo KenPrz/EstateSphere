@@ -120,24 +120,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<div class="nav">
 		<nav>
-
 			<div class="logo">
-				<a href="#">
+				<a href="index.php">
 					<img src="./assets/img/logo.svg" alt="Logo">
 					<a href="#">Estatesphere</a>
 				</a>
 			</div>
 			<ul class="nav-links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="property-listing.php">Properties</a></li>
-            <li><a href="#">Buyer/seller</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="aboutestate.php">About us</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="property-listing.php"><strong>Sell</strong></a></li>
+				<li><a href="#"><strong>Buy</strong></a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="aboutestate.php">About us</a></li>
 			</ul>
 			<div class="login">
-				<a href="logout.php">
-					<button type="button">Logout</button>
-				</a>
+				<select onchange="location = this.value;">
+					<option value="" disabled selected>Account</option>
+					<option value="dashboard.php">Profile</option>
+					<option value="settings.php">Settings</option>
+					<option value="logout.php">Logout</option>
+				</select>
 			</div>
 		</nav>
 		<div class="logo">
