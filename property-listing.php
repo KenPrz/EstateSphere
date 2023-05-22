@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$num_of_carports = $_POST['num_of_carports'];
 	$propOthers = $_POST['propOthers'];
 	$propFeatures = $_POST['propFeatures'];
+	$property_sale_type = $_POST['property_sale_type'];
 
 	// Image section, don't alter
 	$img = $_FILES['property_imgaddrs']['name'];
@@ -64,7 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				num_of_carports,
 				prop_others,
 				prop_features,
-				property_img_addrs
+				property_img_addrs,
+				property_sale_type
 			) VALUES (
 				'{$user_data["user_id"]}',
 				'$property_owner_lname',
@@ -87,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'$propOthers',
 				'$propFeatures',
 				'$fileLocation'
+				'$property_sale_type'
 			)";
 			if (mysqli_query($con, $sql)) {
 				$_SESSION['message'] = 'Successfully Added';
@@ -165,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</div>
 	<div class="container marg mb-4">
 		<div class="button">
-			<button type="button" class="btn btn-secondary">Return to Dashboard</button>
+			<a href="dashboard.php"><button type="button" class="btn btn-secondary">Return to Dashboard</button></a>
 		</div>
 		<div class="row mt-2">
 			<div class="col col-lg-5">
@@ -210,9 +213,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<option value="Luxury Properties">Luxury Properties</option>
 						</select>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-3">
 						<label for="name">Selling Price</label>
 						<input type="text" class="form-control border" placeholder="Price" name="property_price">
+					</div>
+					<div class="col-md-2">
+						<label for="name">Transaction type</label>
+						<select class="form-select" aria-label="Default select example" name="property_sale_type">
+							<option selected>For Sale/Rent</option>
+							<option value="Apartment/Condominium">Sale</option>
+							<option value="Single-Family House">Rent</option>
+						</select>
 					</div>
 				</div>
 
