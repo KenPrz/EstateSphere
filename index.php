@@ -202,6 +202,9 @@ $user_data = check_login($con);
                             $location = $row['property_municipality'];
                             $price = $row['property_price'];
                             $img = $row['property_img_addrs'];
+                            $num_of_beds = $row['num_of_beds'];
+                            $num_of__baths = $row['num_of_baths'];
+                            $num_of_carports = $row['num_of_carports'];
 
                             // Generate the HTML card with the fetched data
                             ?>
@@ -209,32 +212,70 @@ $user_data = check_login($con);
                                 <img src="<?php echo $img; ?>" class="card-img mt-2" alt="image"
                                     style="width: 100%; height: 100%; object-fit: cover;">
                                 <div class="card-body px-0">
-                                    <h5 class="card-title mb-3">
-                                        <?php echo $property_name; ?>
-                                    </h5>
-                                    <h6 class="card-subtitle mb-1">
+                                    <h6 class="card-subtitle mb-1" style="font-size:10px">
+                                        <img src="./assets/img/icons/location.png" alt=""
+                                            style="width: 13px; height: 13px; margin-right:5px; object-fit: cover;">
                                         <?php echo $location; ?>
                                     </h6>
-                                    <h6 class="card-subtitle">
-                                        <?php echo $price; ?>
+                                    <h5 class="card-title mb-" style="font-size: 18px; font-family: Montserrat, sans-serif;">
+                                        <span class="highlight-text">
+                                            <?php echo $property_name; ?>
+                                        </span>
+                                    </h5>
+                                    <h6 class="card-subtitle"
+                                        style="color: #18A0FB; font-size: 18px; font-family: Montserrat, sans-serif;">
+                                        ₱<b>
+                                            <?php echo number_format($price, 0, ',', ','); ?>
+                                        </b>
                                     </h6>
+
                                     <div class="card-text">
-                                        <div class="row">
+                                        <div class="row justify-content-center">
                                             <h4 class="border-bottom">
-                                                <?php for ($i = 1; $i <= 2; $i++) { ?>
-                                                    <img src="./assets/img/icons/star.png" style="height: 15px;width:15px;">
-                                                <?php } ?>
+                                                <?php
+                                                $stars = rand(2, 5); // Generate a random number between 2 and 5
+                                                for ($i = 1; $i <= $stars; $i++) {
+                                                    ?>
+                                                    <img src="./assets/img/icons/star.png" style="height: 15px; width: 15px;">
+                                                    <?php
+                                                }
+                                                ?>
                                             </h4>
-                                            <div class="row">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>BED</h5>
+                                            <div class="row justify-content-center my-2">
+                                                <div class="col-4">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <span class="me-1">
+                                                            <?php echo $num_of_beds; ?>
+                                                        </span>
+                                                        <img src="./assets/img/icons/bed.png" alt=""
+                                                            style="width: 25px; height: 25px;">
                                                     </div>
-                                                    <div class="col-4">
-                                                        <h5>BED</h5>
+                                                    <div class="row">
+                                                        <p style="font-size:8px">Bedrooms</p>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <h5>BED</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <span class="me-1">
+                                                            <?php echo $num_of__baths; ?>
+                                                        </span>
+                                                        <img src="./assets/img/icons/bathtub.png" alt=""
+                                                            style="width: 25px; height: 25px;">
+                                                    </div>
+                                                    <div class="row">
+                                                        <p style="font-size:8px">Bathroom</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <span class="me-1">
+                                                            <?php echo $num_of_carports; ?>
+                                                        </span>
+                                                        <img src="./assets/img/icons/garage.png" alt=""
+                                                            style="width: 25px; height: 25px;">
+                                                    </div>
+                                                    <div class="row">
+                                                        <p style="font-size:8px">Carports</p>
                                                     </div>
                                                 </div>
                                             </div>
