@@ -31,7 +31,7 @@
 				$fileLocation = 'assets/img/review-pics/' . $NewNameFile;
 				// move the file to the new location from temp location 
 				move_uploaded_file($fileTmpName, $fileLocation);
-				$sql2 = "insert into write_review(rev_accuracy, rev_location, rev_communication, rev_checkin, rev_cleanliness, rev_value, date_visit, rev_withwho, review_text, rev_image)values('$ratingAccuracy', '$ratingLocation', '$ratingCommunication', '$ratingCheckIn', '$ratingCleanliness', '$ratingValue' , '$dateVisit', '$withwho' , '$review_text' , '$rev_image')";
+				$sql2 = "insert into write_review(rev_accuracy, rev_location, rev_communication, rev_checkin, rev_cleanliness, rev_value, date_visit, rev_withwho, review_text, rev_image)values('$ratingAccuracy', '$ratingLocation', '$ratingCommunication', '$ratingCheckIn', '$ratingCleanliness', '$ratingValue' , '$dateVisit', '$withwho' , '$review_text' , '$fileLocation')";
 				if (mysqli_query($con, $sql2)) {
 					$_SESSION['message'] = 'Successfully Added';
 
@@ -46,7 +46,7 @@
 			$_SESSION['message'] = 'Allowed format(JPG, JPEG, PNG, GIF,';
 		}
 }
-		$sql = 'select property_municipality, property_type, property_img_addrs from property where property_id = 2';
+		$sql = 'select property_municipality, property_type, property_img_addrs from property where property_id = 4';
 
 		$result = mysqli_query($con, $sql);
 
