@@ -61,16 +61,7 @@ nav {
     color: black;
 }
 
-.login button {
-    padding: 0.5rem 1.5rem;
-    margin-right: 2rem;
-    background-color: #18A0FB;
-    border-radius: 5px;
-    color: white;
-    transition: 0.5s ease;
-    border: none;
-}
-
-.login button:hover {
-    background-color: #1482cb;
+.login select{
+    background-color: aliceblue;
+    border-radius: 25%;
 }

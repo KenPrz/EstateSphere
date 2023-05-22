@@ -19,6 +19,15 @@ body {
     background-position: 25% 75%;
     color: white;
 }
+.property-header{
+    height: 35vh;
+    width: 100%;
+    padding-top: 8vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 25% 75%;
+    color: white;
+}
 .swiper-slide {
     text-align:left;
     font-size: 18px;

@@ -14,16 +14,3 @@ function check_login($con){
     header("Location: login.php");
     die;
 }
-
-// function random_num($lenght){
-//     $text = "";
-//     if($lenght<5){
-//         $lenght=5;
-//     }
-//     $len = rand(4,$lenght);
-
-//     for($i=0;$i<4;$i++){
-//         $text .=rand(0,9);
-//     }
-//     return $text;
-// }
