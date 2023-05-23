@@ -1,0 +1,51 @@
+.bod{
+	margin: 0px;
+	padding: 0px;
+}
+.topcar{
+}
+.h{
+	margin-top: 3	%;
+	padding: 0px;
+	background-size: cover;
+	margin-left: 0px;
+	/*display: flex;
+	justify-content: !important;*/
+	height: 50vh;
+}
+.kros{
+	position: relative;
+	}
+.custom-div {
+
+  display: inline-block;
+}
+.aspt{
+	aspect-ratio: 4/3;
+	object-fit: cover;
+}
+.test{
+	height: 500px;
+	display: flex;
+	justify-content: !important;
+}
+.floating-div{
+	position: absolute;
+	top: 25%;
+	left: 10%;
+}
+.gmaps-float{
+	position: absolute;
+	z-index: 1;
+	top: 76%;
+	left: 80%;
+}
+.gmaps-img{
+	height: 150px;
+}
+.interested{
+	margin-top: 10px;
+}
+.line {
+  border-bottom: 1px solid #000;
+}
