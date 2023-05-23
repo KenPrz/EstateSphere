@@ -5,106 +5,141 @@ include("functions.php");
 $user_data = check_login($con);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	// Property owner information
-	$property_seller = $user_data["user_id"];
-	$property_owner_lname = $_POST['property_owner_lname'];
-	$property_owner_fname = $_POST['property_owner_fname'];
-	$property_owner_contact = $_POST['property_owner_contact'];
-	$property_owner_email = $_POST['property_owner_email'];
+	// Check if the necessary form fields are set
+	if (
+		isset($user_data["user_id"]) &&
+		isset($_POST['property_owner_lname']) &&
+		isset($_POST['property_owner_fname']) &&
+		isset($_POST['property_owner_contact']) &&
+		isset($_POST['property_owner_email']) &&
+		isset($_POST['property_name']) &&
+		isset($_POST['property_type']) &&
+		isset($_POST['property_price']) &&
+		isset($_POST['property_municipality']) &&
+		isset($_POST['property_baranggay']) &&
+		isset($_POST['property_zone_purok']) &&
+		isset($_POST['property_map']) &&
+		isset($_POST['property_lot_area']) &&
+		isset($_POST['property_flr_area']) &&
+		isset($_POST['num_of_beds']) &&
+		isset($_POST['num_of_baths']) &&
+		isset($_POST['num_of_carports']) &&
+		isset($_POST['propOthers']) &&
+		isset($_POST['propFeatures']) &&
+		isset($_POST['property_sale_type']) &&
+		isset($_FILES['property_imgaddrs']['name']) &&
+		isset($_FILES['property_imgaddrs']['tmp_name'])
+	) {
+		// Property owner information
+		$property_seller = $user_data["user_id"];
+		$property_owner_lname = $_POST['property_owner_lname'];
+		$property_owner_fname = $_POST['property_owner_fname'];
+		$property_owner_contact = $_POST['property_owner_contact'];
+		$property_owner_email = $_POST['property_owner_email'];
 
-	// Property listing information
-	$prop_status = "for sale";
-	$property_name = $_POST['property_name'];
-	$property_type = $_POST['property_type'];
-	$property_price = $_POST['property_price'];
-	$property_municipality = $_POST['property_municipality'];
-	$property_baranggay = $_POST['property_baranggay'];
-	$property_zone_purok = $_POST['property_zone_purok'];
-	$property_map = $_POST['property_map'];
-	$property_lot_area = $_POST['property_lot_area'];
-	$property_flr_area = $_POST['property_flr_area'];
-	$num_of_beds = $_POST['num_of_beds'];
-	$num_of_baths = $_POST['num_of_baths'];
-	$num_of_carports = $_POST['num_of_carports'];
-	$propOthers = $_POST['propOthers'];
-	$propFeatures = $_POST['propFeatures'];
-	$property_sale_type = $_POST['property_sale_type'];
+		// Property listing information
+		$prop_status = "for sale";
+		$property_name = $_POST['property_name'];
+		$property_type = $_POST['property_type'];
+		$property_price = $_POST['property_price'];
+		$property_municipality = $_POST['property_municipality'];
+		$property_baranggay = $_POST['property_baranggay'];
+		$property_zone_purok = $_POST['property_zone_purok'];
+		$property_map = $_POST['property_map'];
+		$property_lot_area = $_POST['property_lot_area'];
+		$property_flr_area = $_POST['property_flr_area'];
+		$num_of_beds = $_POST['num_of_beds'];
+		$num_of_baths = $_POST['num_of_baths'];
+		$num_of_carports = $_POST['num_of_carports'];
+		$propOthers = $_POST['propOthers'];
+		$propFeatures = $_POST['propFeatures'];
+		$property_sale_type = $_POST['property_sale_type'];
 
-	// Image section, don't alter
-	$img = $_FILES['property_imgaddrs']['name'];
-	$fileTmpName = $_FILES['property_imgaddrs']['tmp_name'];
-	$allowedType = array('jpg', 'png', 'jpeg', 'gif', 'ico');
-	$fileExtension = explode('.', $img);
-	$fileRealExtension = strtolower(end($fileExtension));
+		// Image section, don't alter
+		$img = $_FILES['property_imgaddrs']['name'];
+		$fileTmpName = $_FILES['property_imgaddrs']['tmp_name'];
+		$allowedType = array('jpg', 'png', 'jpeg', 'gif', 'ico');
+		$fileExtension = explode('.', $img);
+		$fileRealExtension = strtolower(end($fileExtension));
 
-	if (preg_match("!image!", $_FILES['property_imgaddrs']['type'])) {
-		if (in_array($fileRealExtension, $allowedType)) {
-			$_SESSION['property_imgaddrs'] = $img;
-			$fileExtension = explode('.', $img);
-			$NewNameFile = uniqid('', true) . "." . $fileRealExtension;
-			$fileLocation = 'assets/img/properties/' . $NewNameFile;
-			move_uploaded_file($fileTmpName, $fileLocation);
-			$sql = "INSERT INTO property (
-				property_seller,
-				property_owner_lname,
-				property_owner_fname,
-				property_owner_cont,
-				property_owner_email,
-				property_status,
-				property_name,
-				property_type,
-				property_price,
-				property_municipality,
-				property_baranggay,
-				property_zone_purok,
-				property_map,
-				property_lot_area,
-				property_flr_area,
-				num_of_beds,
-				num_of_baths,
-				num_of_carports,
-				prop_others,
-				prop_features,
-				property_img_addrs,
-				property_sale_type
-			) VALUES (
-				'{$user_data["user_id"]}',
-				'$property_owner_lname',
-				'$property_owner_fname',
-				'$property_owner_contact',
-				'$property_owner_email',
-				'$prop_status',
-				'$property_name',
-				'$property_type',
-				'$property_price',
-				'$property_municipality',
-				'$property_baranggay',
-				'$property_zone_purok',
-				'$property_map',
-				'$property_lot_area',
-				'$property_flr_area',
-				'$num_of_beds',
-				'$num_of_baths',
-				'$num_of_carports',
-				'$propOthers',
-				'$propFeatures',
-				'$fileLocation'
-				'$property_sale_type'
-			)";
-			if (mysqli_query($con, $sql)) {
-				$_SESSION['message'] = 'Successfully Added';
+		if (preg_match("!image!", $_FILES['property_imgaddrs']['type'])) {
+			if (in_array($fileRealExtension, $allowedType)) {
+				// Generate a unique file name for the uploaded image
+				$NewNameFile = uniqid('', true) . "." . $fileRealExtension;
+				$fileLocation = 'assets/img/properties/' . $NewNameFile;
+
+				// Move the uploaded image to the desired location
+				if (move_uploaded_file($fileTmpName, $fileLocation)) {
+					// Include your database connection code here (e.g., $con variable)
+
+					// Prepare and execute the database query
+					$sql = "INSERT INTO property (
+						property_seller,
+						property_owner_lname,
+						property_owner_fname,
+						property_owner_cont,
+						property_owner_email,
+						property_status,
+						property_name,
+						property_type,
+						property_price,
+						property_municipality,
+						property_baranggay,
+						property_zone_purok,
+						property_map,
+						property_lot_area,
+						property_flr_area,
+						num_of_beds,
+						num_of_baths,
+						num_of_carports,
+						prop_others,
+						prop_features,
+						property_img_addrs,
+						property_sale_type
+					) VALUES (
+						'{$user_data["user_id"]}',
+						'$property_owner_lname',
+						'$property_owner_fname',
+						'$property_owner_contact',
+						'$property_owner_email',
+						'$prop_status',
+						'$property_name',
+						'$property_type',
+						'$property_price',
+						'$property_municipality',
+						'$property_baranggay',
+						'$property_zone_purok',
+						'$property_map',
+						'$property_lot_area',
+						'$property_flr_area',
+						'$num_of_beds',
+						'$num_of_baths',
+						'$num_of_carports',
+						'$propOthers',
+						'$propFeatures',
+						'$fileLocation',
+						'$property_sale_type'
+					)";
+					
+					if (mysqli_query($con, $sql)) {
+						$_SESSION['message'] = 'Successfully Added';
+					} else {
+						$_SESSION['message'] = 'Cannot add property: ' . mysqli_error($con);
+					}
+				} else {
+					$_SESSION['message'] = 'Failed to move uploaded file';
+				}
 			} else {
-				$_SESSION['message'] = 'Cannot add property';
+				$_SESSION['message'] = 'Invalid file format. Allowed formats are: JPG, JPEG, PNG, GIF';
 			}
 		} else {
-			$_SESSION['message'] = 'Cannot add property';
+			$_SESSION['message'] = 'Invalid file type. Only image uploads are allowed';
 		}
 	} else {
-		$_SESSION['message'] = 'Allowed format(JPG, JPEG, PNG, GIF)';
+		$_SESSION['message'] = 'Missing required form fields';
 	}
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -143,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </nav>
 	</div>
+	
 	<div class="container marg mb-4">
 		<div class="button">
 			<a href="dashboard.php"><button type="button" class="btn btn-secondary">Return to Dashboard</button></a>
@@ -151,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="col col-lg-5">
 				<h2 class="fw-bold est">EstateSphere</h2>
 				<p class="fw-bold">Bringing Buyers and Seller Together <br>in the Virtual World</p>
+				<?php echo $_SESSION['message']?>
 			</div>
 			<div class="col">
 				<div class="shaded-div">
