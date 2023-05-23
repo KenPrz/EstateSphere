@@ -73,7 +73,7 @@
                 <option value="logout.php">Logout</option>
             </select>
         </div>
-    </nav>
+    </nav>  
     <div class="h custom-div text-white ">
       <div class="kros text-center">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

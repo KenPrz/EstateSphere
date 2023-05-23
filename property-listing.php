@@ -60,12 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				property_map,
 				property_lot_area,
 				property_flr_area,
+				property_img_addrs,
 				num_of_beds,
 				num_of_baths,
 				num_of_carports,
 				prop_others,
 				prop_features,
-				property_img_addrs,
+				
 				property_sale_type
 			) VALUES (
 				'{$user_data["user_id"]}',
@@ -83,12 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'$property_map',
 				'$property_lot_area',
 				'$property_flr_area',
+				'$fileLocation',
 				'$num_of_beds',
 				'$num_of_baths',
 				'$num_of_carports',
 				'$propOthers',
 				'$propFeatures',
-				'$fileLocation'
+				
 				'$property_sale_type'
 			)";
 			if (mysqli_query($con, $sql)) {
@@ -198,8 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<label for="name">Transaction type</label>
 						<select class="form-select" aria-label="Default select example" name="property_sale_type">
 							<option selected>For Sale/Rent</option>
-							<option value="Apartment/Condominium">Sale</option>
-							<option value="Single-Family House">Rent</option>
+							<option value="Sale">Sale</option>
+							<option value="Rent">Rent</option>
 						</select>
 					</div>
 				</div>
