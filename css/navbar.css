@@ -61,7 +61,7 @@ nav {
     color: black;
 }
 
-.login select{
+.login-select{
     background-color: aliceblue;
-    border-radius: 25%;
+    border-radius: 10%;
 }
