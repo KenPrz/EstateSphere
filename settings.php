@@ -125,14 +125,13 @@ function sanitizeInput($data) {
         <div class="logo">
             <a href="index.php">
                 <img src="./assets/img/logo.svg" alt="Logo">
-                <a href="#">Estatesphere</a>
+                <a href="index">Estatesphere</a>
             </a>
         </div>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
             <li><a href="property-listing.php"><strong>Sell</strong></a></li>
             <li><a href="listings.php"><strong>Buy</strong></a></li>
-            <li><a href="#">Contact</a></li>
             <li><a href="aboutestate.php">About us</a></li>
         </ul>
         <div class="login">
