@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		isset($_POST['num_of_carports']) &&
 		isset($_POST['propOthers']) &&
 		isset($_POST['propFeatures']) &&
-		isset($_POST['property_sale_type']) &&
 		isset($_FILES['property_imgaddrs']['name']) &&
 		isset($_FILES['property_imgaddrs']['tmp_name'])
 	) {
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$num_of_carports = $_POST['num_of_carports'];
 		$propOthers = $_POST['propOthers'];
 		$propFeatures = $_POST['propFeatures'];
-		$property_sale_type = $_POST['property_sale_type'];
+		$property_sale_type = 'sale';
 
 		// Image section, don't alter
 		$img = $_FILES['property_imgaddrs']['name'];
@@ -120,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						'$fileLocation',
 						'$property_sale_type'
 					)";
-					
 					if (mysqli_query($con, $sql)) {
 						$_SESSION['message'] = 'Successfully Added';
 					} else {

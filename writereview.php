@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 include("functions.php");
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$ratingAccuracy = $_POST['ratingAccuracy'];
 	$ratingLocation = $_POST['ratingLocation'];
 	$ratingCommunication = $_POST['ratingCommunication'];

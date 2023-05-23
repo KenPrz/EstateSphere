@@ -15,7 +15,6 @@ function check_login($con){
     header("Location: login.php");
     die;
 }
-
 function getNumPropertiesForSale($con, $userId) {
     $query = "SELECT property_seller, COUNT(*) AS num_properties_for_sale FROM property WHERE property_sale_type = 'Sale' AND property_seller = $userId GROUP BY property_seller;";
     $result = $con->query($query);
@@ -36,7 +35,7 @@ function getNumPropertiesForSale($con, $userId) {
 function getNumPropertiesForRent($con, $userId) {
     $query = "SELECT property_seller, COUNT(*) AS num_properties_for_rent FROM property WHERE property_sale_type = 'Rent' AND property_seller = $userId GROUP BY property_seller;";
     $result = $con->query($query);
-    if ($result) {
+    if ($result && $result->num_rows > 0) {
         // Fetch the data
         $row = $result->fetch_assoc();
         // Access the values
@@ -46,7 +45,6 @@ function getNumPropertiesForRent($con, $userId) {
         return $num_properties_for_rent;
     } else {
         // Handle query error
-        echo "Query failed: ";
         return 0; // or any other appropriate default value
     }
 }
@@ -87,7 +85,6 @@ function recentUsers($con, $userId) {
         return array(); // or any other appropriate default value
     }
 }
-
 function handleDeleteAccount() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Delete account logic here
