@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 include("functions.php");
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$ratingAccuracy = $_POST['ratingAccuracy'];
 	$ratingLocation = $_POST['ratingLocation'];
 	$ratingCommunication = $_POST['ratingCommunication'];
@@ -50,23 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = 'Allowed format(JPG, JPEG, PNG, GIF,';
 	}
 }
-<<<<<<< HEAD
 		$sql = 'select property_municipality, property_type, property_img_addrs from property where property_id = 4';
-=======
-$sql = 'select property_municipality, property_type, property_img_addrs from property where property_id = 2';
->>>>>>> abaa218b3c72cb18768d1ac1fdd15bc7a6cb8fae
 
 $result = mysqli_query($con, $sql);
-
 $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 // mysqli_free_result($result);
 // mysqli_close($con);
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,7 +71,6 @@ $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="./js/h.js"></script>
 </head>
-
 <body>
 	<div class="nav">
 		<nav>
@@ -268,34 +259,19 @@ $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
 							<div class="h6 fw-bold mt-4">Write your review</div>
 							<textarea type="text" class="form-control resize-none" rows="5" placeholder="I'am very satisfied on the house its so..." aria-label="Last name" name="review_text"><?php echo htmlspecialchars($_POST['review_text'] ?? '', ENT_QUOTES); ?></textarea>
 						</div>
-
 						<div class="mt-5">
 							<div class="h6 fw-bold mt-4">Add some photos</div>
 							<label for="formFile" class="form-label fs-15">Optional</label>
 							<input class="form-control border" type="file" id="formFile" aria-label="Last name" name="rev_image">
-
 						</div>
 						<div class="but mt-5  text-center">
 							<button type="submit" class="btn btn-primary form-control">submit</button>
 						</div>
 					</form>
 				</div>
-
-
-
-
 			</div>
 		</div>
 	</div>
 	</div>
-
-
-
-
-
 </body>
-
 </html>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-

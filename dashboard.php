@@ -82,7 +82,7 @@ $user_data = check_login($con);
                                         </div>
                                         <div class="row">
                                             <h2><strong>
-                                                    <?php echo $num_properties = getNumPropertiesForSale($con, $user_data['user_id']); ?>
+                                                    <?php echo $num_properties = getNumPropertiesForSale($con, $user_data['user_id']);?>
                                                 </strong>
                                             </h2>
                                         </div>
