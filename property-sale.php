@@ -8,9 +8,10 @@ $user_data = check_login($con);
 	$sql= "select property_id, property_type, property_name, property_price, property_status, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_seller= " .$user_data["user_id"];
     $result = mysqli_query($con, $sql);
     $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
-    mysqli_free_result($result);
+    $sql2= "select property_id, property_type, property_name, property_price, property_status, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_seller= " .$user_data["user_id"];
+    $result2 = mysqli_query($con, $sql);
+    $sales = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+    mysqli_free_result($result2);
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,6 +85,15 @@ $user_data = check_login($con);
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="row p-5 ">
+                <div class="col-md-3 h7 fw-bold border bg-light shadow p-4">
+                    Total Sales:
+                    <div class="p">
+                    29589245
+                    </div>
+                </div>
+                
             </div>
             <div class="row">
                 <div class="col-10">

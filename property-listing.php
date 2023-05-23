@@ -129,6 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = 'Missing required form fields';
 	}
 }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -357,5 +358,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</form>
 	</div>
 </body>
-
 </html>
