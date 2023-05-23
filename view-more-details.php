@@ -1,6 +1,8 @@
-<?php 
+<?php
+    session_start();
     include("connection.php");
     include("functions.php");
+    $user_data = check_login($con);
 
     // since two tables are used
     $sql= 'select property_id, property_type, property_price, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_id= "4"';
@@ -342,7 +344,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-3 border">
+                                    <div class="col-md-3 ">
                                          <div class="say mt-3 text-secondary text-center m-o p-0">
                                             <img src="<?php echo htmlspecialchars($review['rev_image']); ?>" class="" width="50">
                                         </div>
