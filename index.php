@@ -4,10 +4,8 @@ include("connection.php");
 include("functions.php");
 $user_data = check_login($con);
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Home</title>
     <link rel="stylesheet" href="./css/home.css">

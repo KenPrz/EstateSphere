@@ -2,15 +2,12 @@
 session_start();
 include "connection.php";
 include 'functions.php';
-
 $error_message = "";
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $firstname = mysqli_real_escape_string($con, $_POST['firstname']);
     $lastname = mysqli_real_escape_string($con, $_POST['lastname']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
-    
     // Check if any of the required fields are empty
     if (!empty($email) && !empty($firstname) && !empty($lastname) && !empty($password)) {
         $query = "INSERT INTO users (email, firstname, lastname, password)

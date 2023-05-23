@@ -11,7 +11,6 @@ $user_data = check_login($con);
 
 
     mysqli_free_result($result);
-    mysqli_close($con);
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,13 +22,6 @@ $user_data = check_login($con);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./css/property-sales.css">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color:#f2f2f2">
     <sidebar class="sidebar shadow-sm" style="background-color:white">
@@ -93,98 +85,60 @@ $user_data = check_login($con);
                     </ul>
                 </div>
             </div>
-            <div class="row customers">
-                <div class="col-6">
-                    <h1 class="mb-2 mt-4"> <strong>Customers</strong></h1>
-                    <div class="row ms-2">
-                    <table class="table border rounded">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Type</th>
-            <th scope="col">Status</th>
-            <th scope="col">Property</th>
-            <th scope="col"></th> <!-- Add an empty header for the button column -->
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">John Doe</th>
-            <td>johndoe@example.com</td>
-            <td>House</td>
-            <td>For Sale</td>
-            <td>Property A</td>
-            <td><button onclick="showPopup('John Doe', 'johndoe@example.com', 'House', 'For Sale', 'Property A')">View Details</button></td>
-        </tr>
-        <tr>
-            <th scope="row">Jane Smith</th>
-            <td>janesmith@example.com</td>
-            <td>Apartment</td>
-            <td>Sold</td>
-            <td>Property B</td>
-            <td><button onclick="showPopup('Jane Smith', 'janesmith@example.com', 'Apartment', 'Sold', 'Property B')">View Details</button></td>
-        </tr>
-        <!-- Add more rows for additional customers -->
-    </tbody>
-</table>
+            <div class="row">
+                <div class="col-10">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Property</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                    // Assuming you have a database connection established
 
-</table>
+                    // Retrieve the user's ID
+                    $user_id = $user_data['user_id'];
 
-<script>
-    function showPopup(name, email, propertyType, propertyStatus, propertyName) {
-        // Replace this with your own logic to show the popup box
-        alert("User Details:\nName: " + name + "\nEmail: " + email + "\nProperty Type: " + propertyType + "\nProperty Status: " + propertyStatus + "\nProperty Name: " + propertyName);
-    }
-</script>
+                    // Fetch the properties associated with the user from the database
+                    $query = "SELECT * FROM property WHERE property_seller = $user_id";
+                    $result = mysqli_query($con, $query);
 
-                    </div>
+                    // Loop through the results and populate the table rows
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $property_id = $row['property_id'];
+                        $property_name = $row['property_name'];
+                        $property_type = $row['property_type'];
+                        $property_price = $row['property_price'];
+                        $property_status = $row['property_status'];
+
+                        echo '<tr>';
+                        echo '<td>' . $property_name . '</td>';
+                        echo '<td>' . $property_type . '</td>';
+                        echo '<td>' . $property_price . '</td>';
+                        echo '<td>' . $property_status . '</td>';
+                        echo '<td><a href="edit.php?id=' . $property_id . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                      </svg></a></td>';
+                        echo '<td><a href="delete.php?id=' . $property_id . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                      </svg></a></td>';
+                        echo '</tr>';
+                    }
+                mysqli_close($con);
+                ?>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
         <!-- END Main container -->
     </main>
-
-    <div class="showtls text-center">
-    	<div class="container-lg">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8"><h2>Property <b>Lists</b></h2></div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Property ID</th>
-                        <th>Property Name</th>
-                        <th>Property Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                	 <?php foreach ($properties as $property) { ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($property['property_id']); ?></td>
-                        <td><?php echo htmlspecialchars($property['property_name']); ?></td>
-                        <td><?php echo htmlspecialchars($property['property_status']); ?></td>
-                        <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip" href="edit_property.php?id=' . $property['property_id'] .'"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> 
-    </div>
 </body>
 </html>
 

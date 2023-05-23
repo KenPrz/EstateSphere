@@ -88,7 +88,7 @@ $user_data = check_login($con);
             <th scope="col">Type</th>
             <th scope="col">Status</th>
             <th scope="col">Property</th>
-            <th scope="col"></th> <!-- Add an empty header for the button column -->
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
