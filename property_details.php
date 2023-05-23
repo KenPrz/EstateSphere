@@ -42,14 +42,16 @@
     <title>View More Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/popform.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/viewmore.css">
+    <link rel="stylesheet" href="./css/popform.css">
 </head>
 <body class="bod">
    
-        <nav>
+       <nav>
         <div class="logo">
             <a href="index.php">
                 <img src="./assets/img/logo.svg" alt="Logo">
@@ -58,15 +60,18 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="property-listing.php">Properties</a></li>
-            <li><a href="#">Buyer/seller</a></li>
+            <li><a href="property-listing.php"><strong>Sell</strong></a></li>
+            <li><a href="listings.php"><strong>Buy</strong></a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="aboutestate.php">About us</a></li>
         </ul>
         <div class="login">
-            <a href="logout.php">
-                <button type="button">Logout</button>
-            </a>
+            <select onchange="location = this.value;">
+                <option value="" disabled selected>Account</option>
+                <option value="dashboard.php">Profile</option>
+                <option value="settings.php">Settings</option>
+                <option value="logout.php">Logout</option>
+            </select>
         </div>
     </nav>
     <div class="h custom-div text-white ">
@@ -371,19 +376,156 @@
                         <?php } ?>
                     </div>
                 </div>
-            </div>
-           
+            </div> 
         </div> 
-
         <div class="foot mt-3 text-center pb-4">
             <div class="row text-center">
                 <div class="col m-2">
-                    <button type="" class="btn btn-primary shadow">Contact Seller</button>
-                     <button type="" class="btn btn-primary m-2 shadow">Book A Tour</button>
+                    <button type="" id="openFormButton" class="btn btn-primary shadow">Contact Seller</button>
+                     <button type="" id="openFormButton2" class="btn btn-primary m-2 shadow">Book A Tour</button>
                 </div>
                  
             </div>
-        </div>  
+        </div> 
     </div>
+    <!-- This is for Contact Pop-->
+   <div id="popupForm" class="border rounded">
+      <form>
+          <div class="h5 text-center fw-bold">CONTACT US TO GET YOUR HOME ESTIMATIONs</div>
+                <div class="p">To help you choose your lodging</div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Name" aria-label="Last name"
+                            name="inqname">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Phone Number" name="inqno">
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Email address" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="name"></label>
+                        <textarea type="text" class="form-control resize-none" rows="4" placeholder="Tell us your concern..."
+                            aria-label="Last name" name="inqcon"></textarea>
+                    </div>
+                </div>
+                <div class="button mt-3 text-center">
+                    <button class="btn btn-secondary" type="submit">Send Message</button>
+                </div>
+
+      </form>
+      <button id="closeFormButton" class="btn btn-light">Close</button>
+   </div>
+    <div class="overlay"></div>
+
+   <!-- this is for Book a tour-->
+
+   <div id="popupForm2" class="border rounded">
+      <form class="" >
+          <div class="h5 fw-bold"></div>
+            <div class="h6 fw-bold">Book A Property Tour</div>
+                <div class="p">Find your next home in Albay </div>
+                <div class="h7 text-secondary mt-3">Booking Information</div>
+                <div class="row">
+                    <div class="col">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Name" aria-label="Last name"
+                            name="inqname">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Phone No." name="inqno">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Email address" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Gender" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Age" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                     <div class="col">
+                        <label for="name"></label>
+                        <input type="text" class="form-control border" placeholder="Occupation" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                </div>
+                <div class="p mt-2      ">Preferred Date and Time</div>
+                <div class="row text-secondary">
+                    <div class="col-md-6">
+                        <label for="name">Date</label>
+                        <input type="date" class="form-control border" placeholder="" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                     <div class="col">
+                        <label for="name">Time</label>
+                        <input type="time" class="form-control border" placeholder="" aria-label="Last name"
+                            name="inqemail">
+                    </div>
+                </div>
+                <div class="not">
+                  <label for="name"></label>
+                  <textarea type="text" class="form-control resize-none" rows="4" placeholder="Additonal notes..."
+                            aria-label="Last name" name="inqcon"></textarea>
+                </div>
+                <div class="how mt-3">
+                    <input type="text" class="form-control border" placeholder="How did you find out about us?" aria-label="Last name"
+                            name="inqemail">
+                </div>
+                <div class="button mt-3 text-center">
+                    <button class="btn btn-secondary" type="submit">Book A Tour</button>
+                </div>
+
+      </form>
+      <button id="closeFormButton2" class="btn btn-light">Close</button>
+   </div>
+
+   <div class="overlay2"></div>
+
+
+<script type="text/javascript">
+     document.getElementById("openFormButton").addEventListener("click", function() {
+      document.getElementById("popupForm").style.display = "block";
+      document.querySelector(".overlay").style.display = "block";
+    });
+
+    document.getElementById("closeFormButton").addEventListener("click", function() {
+      document.getElementById("popupForm").style.display = "none";
+      document.querySelector(".overlay").style.display = "none";
+    }); 
+
+
+    document.getElementById("openFormButton2").addEventListener("click", function() {
+      document.getElementById("popupForm2").style.display = "block";
+      document.querySelector(".overlay2").style.display = "block";
+    });
+
+    document.getElementById("closeFormButton2").addEventListener("click", function() {
+      document.getElementById("popupForm2").style.display = "none";
+      document.querySelector(".overlay2").style.display = "none";
+    }); 
+</script>
 </body>
 </html>
