@@ -2,10 +2,24 @@
     include("connection.php");
     include("functions.php");
 
-    // since two tables are used
-    $sql= 'select property_id, property_type, property_price, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_id= "4"';
+
+    if (isset($_GET['id'])) {
+    // Retrieve the property ID from the query parameter
+    $property_id = $_GET['id'];
+
+    // Fetch the property details from the database based on the property ID
+    $sql= "select property_id, property_type, property_price, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_id= '$property_id'";
     $result = mysqli_query($con, $sql);
     $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    // Check if the query was successful and if the property exists
+} else {
+    // Handle the case when the property ID is not provided
+    echo "Property ID not provided.";
+}
+    // since two tables are used
+    // $sql= 'select property_id, property_type, property_price, property_municipality, property_baranggay, property_zone_purok, property_flr_area, property_lot_area, property_img_addrs, num_of_beds, num_of_baths, num_of_carports, prop_others, prop_features, property_owner_fname, property_owner_lname, property_owner_email, property_name from property where property_id= "4"';
+    // $result = mysqli_query($con, $sql);
+    // $properties = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $sql2 = 'select date_visit, rev_withwho, review_text, rev_image from write_review';
 
 
