@@ -6,7 +6,6 @@ $user_data = check_login($con);
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>
         <?php echo $user_data['firstname'], ' ', $user_data['lastname'] ?>
@@ -30,8 +29,7 @@ $user_data = check_login($con);
         </div>
         <div class="row">
             <ul class="sidebar-nav">
-                <li><a href="dashboard.php"><img src="./assets/img/icons/pie-chart.png" alt="Dashboard"> Dashboard</a>
-                </li>
+                <li id="selected-dashboard" ><a href="dashboard.php"><img src="./assets/img/icons/pie-chart.png" alt="Dashboard"> Dashboard</a></li>
                 <li><a href="profile.php"><img src="./assets/img/icons/user.png" alt="Profile">‎ Profile</a></li>
                 <li><a href="listings.php"><img src="./assets/img/icons/buildings.png" alt="Logout"> Properties</a></li>
                 <li><a href="settings.php"><img src="./assets/img/icons/settings.png" alt="Settings"> Settings</a></li>
@@ -275,25 +273,40 @@ $user_data = check_login($con);
                         </div>
                         <!-- Lower Dashboard -->
                     </div>
-                    <div class="col-4 border rounded" style="background-color: white; margin-left: 2rem;">
-                        <div class="row mt-4">
+                    <div class="col-4 border rounded" style="background-color: white; margin-left: 2rem; overflow: auto; max-height: 60vh;">
+                        <div class="row mt-4 sticky-top" style="position: sticky; top: cover; background-color: white; z-index: 1;">
                             <h4><strong>Recent Customers</strong></h4>
                         </div>
                         <hr>
                         <?php
                         // Fetch the recent customers
-                        for ($i = 0; $i < 10; $i++) { ?>
-                            <div class="row" style="max-height: 200px; overflow: auto;">
-                                <div class="col-2">
-                                    <img src="./assets/img/admnAvatar/avatarF1.jpg" alt="" style="height:25px;width:25px;">
+                        for ($i = 0; $i < 10; $i++) {
+                            $recentUsers = recentUsers($con, $user_data['user_id']);
+                            if (is_array($recentUsers)) {
+                                foreach ($recentUsers as $user) {
+                                    ?>
+                                <div class="container">
+                                    <div class="row my-4">
+                                        <div class="col-2">
+                                            <img src="./assets/img/admnAvatar/avatarF1.jpg" alt="" style="height: 50px; width: 50px;">
+                                        </div>
+                                        <div class="col-auto d-flex align-items-center">
+                                            <?php echo ucfirst($user); ?>
+                                        </div>
+                                    </div>
+                                    <hr>
                                 </div>
-                                <div class="col-auto">
-                                    <?php echo $num_properties = recentUsers($con, $user_data['user_id']); ?>
-                                </div>
-                            </div>
-                        <?php
+                                    <?php
+                                }
+                            } else {
+                                // Handle the case when recentUsers() does not return an array
+                                // Display an appropriate error message or handle it as per your requirement
+                            }
                         }
                         ?>
+                    </div>
+
+
                     </div>
                     <!-- Dashboard Main -->
                 </div>

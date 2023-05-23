@@ -149,3 +149,20 @@ nav {
     justify-content: center;
     position: relative;
 }
+#selected-dashboard{
+    color: #18A0fB;
+}
+
+.profile-container{
+    background-color: red;
+}
+
+.contacts li{
+    padding-bottom: 1rem;
+    list-style-type: none;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+}

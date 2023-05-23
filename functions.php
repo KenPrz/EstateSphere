@@ -68,19 +68,39 @@ function getNumOfSold($con, $userId) {
     }
 }
 function recentUsers($con, $userId) {
-    $query = "SELECT * FROM users ORDER BY customer_id DESC LIMIT 10";
+    $query = "SELECT * FROM users ORDER BY user_id DESC LIMIT 10";
     $result = $con->query($query);
-    if ($result) {
-        // Fetch the data
-        $row = $result->fetch_assoc();
-        // Access the values
-        $property_seller = $row['customer_id'];
-        $recentUsers = $row['first_name'];
-        // Return the values
+    
+    if ($result && $result->num_rows > 0) {
+        $recentUsers = array();
+        
+        while ($row = $result->fetch_assoc()) {
+            $property_seller = $row['user_id'];
+            $recentUsers[] = $row['firstname']." ".$row['lastname'];
+        }
+        
+        // Return the array of recent users
         return $recentUsers;
     } else {
         // Handle query error
-        echo "Query failed: ";
-        return 0; // or any other appropriate default value
+        echo "Query failed: " . $con->error;
+        return array(); // or any other appropriate default value
+    }
+}
+
+function handleDeleteAccount() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Delete account logic here
+
+        // Check if the delete button was clicked
+        if (isset($_POST['deleteAccount'])) {
+            // Perform account deletion process
+
+            // Add your code to delete the account from the database or perform any other necessary actions
+
+            // Display success message or redirect to a different page
+            echo "Account deleted successfully!";
+            exit; // Exit to prevent further execution of the script
+        }
     }
 }
